@@ -17,6 +17,10 @@ public class BulletControlSystem implements IEntityProcessingService, BulletSPI 
             double changeY = Math.sin(Math.toRadians(bullet.getRotation()));
             bullet.setX(bullet.getX() + changeX * 3);
             bullet.setY(bullet.getY() + changeY * 3);
+
+            if (!IsBulletOnScreen(bullet, gameData, world)) {
+                world.removeEntity(bullet);
+            }
         }
     }
 
@@ -31,5 +35,13 @@ public class BulletControlSystem implements IEntityProcessingService, BulletSPI 
         bullet.setRotation(shooter.getRotation());
         bullet.setRadius(1);
         return bullet;
+    }
+
+    private boolean IsBulletOnScreen(Entity bullet, GameData gameData, World world) {
+        if ((bullet.getX() > gameData.getDisplayWidth() || bullet.getX() < 0) || (bullet.getY() > gameData.getDisplayHeight() || bullet.getY() < 0)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
