@@ -17,6 +17,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -75,6 +76,7 @@ public class Main extends Application {
         }
         for (Entity entity : world.getEntities()) {
             Polygon polygon = new Polygon(entity.getPolygonCoordinates());
+            polygon.setFill(Color.rgb(entity.getColor()[0] % 255, entity.getColor()[1] % 255, entity.getColor()[2] % 255));
             polygons.put(entity, polygon);
             gameWindow.getChildren().add(polygon);
         }
