@@ -19,7 +19,10 @@
         <module>CommonPlayer</module>
         <module>CommonBullet</module>
         <module>Bullet</module>
+        <module>CommonEnemy</module>
+        <module>Enemy</module>
     </modules>
+
     <properties>
         <java>java</java>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>        
