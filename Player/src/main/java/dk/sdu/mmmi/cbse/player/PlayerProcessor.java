@@ -5,7 +5,6 @@ import dk.sdu.mmmi.cbse.common.data.GameData;
 import dk.sdu.mmmi.cbse.common.data.GameKeys;
 import dk.sdu.mmmi.cbse.common.data.World;
 import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
-import dk.sdu.mmmi.cbse.common.services.IPostEntityProcessingService;
 import dk.sdu.mmmi.cbse.commonBullet.BulletSPI;
 import dk.sdu.mmmi.cbse.commonPlayer.Player;
 
@@ -31,7 +30,9 @@ public class PlayerProcessor implements IEntityProcessingService {
                 player.setY(player.getY() + changeY);
             }
             if (gameData.getKeys().isDown(GameKeys.SPACE)) {
-                if (getBulletSPIs().stream().findFirst().isPresent()) {
+                Player p = (Player) player;
+                if (getBulletSPIs().stream().findFirst().isPresent() && (System.currentTimeMillis() - p.getLastShot() > p.getBulletCooldown())) {
+                    p.setLastShot(System.currentTimeMillis());
                     world.addEntity(getBulletSPIs().stream().findFirst().get().createBullet(player, gameData));
                 }
             }
