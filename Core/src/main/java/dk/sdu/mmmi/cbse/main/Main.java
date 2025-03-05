@@ -28,6 +28,7 @@ public class Main extends Application {
     private final World world = new World();
     private final Map<Entity, Polygon> polygons = new ConcurrentHashMap<>();
     private final Pane gameWindow = new Pane();
+    private final Text scoreText = new Text(10, 20, "Destroyed asteroids: 0");
 
     public static void main(String[] args) {
         launch(Main.class);
@@ -35,9 +36,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage window) throws Exception {
-        Text text = new Text(10, 20, "Destroyed asteroids: 0");
+        //Text text = new Text(10, 20, "Destroyed asteroids: 0");
         gameWindow.setPrefSize(gameData.getDisplayWidth(), gameData.getDisplayHeight());
-        gameWindow.getChildren().add(text);
+        gameWindow.getChildren().add(scoreText);
 
         Scene scene = new Scene(gameWindow);
         scene.setOnKeyPressed(event -> {
@@ -120,6 +121,7 @@ public class Main extends Application {
             Polygon polygon = polygons.get(entity);
             if (polygon == null) {
                 polygon = new Polygon(entity.getPolygonCoordinates());
+                polygon.setFill(Color.rgb(entity.getColor()[0] % 255, entity.getColor()[1] % 255, entity.getColor()[2] % 255));
                 polygons.put(entity, polygon);
                 gameWindow.getChildren().add(polygon);
             }
@@ -128,6 +130,7 @@ public class Main extends Application {
             polygon.setRotate(entity.getRotation());
         }
 
+        scoreText.setText("Destroyed asteroids: " + gameData.getAsteroidsKilled());
     }
 
     private Collection<? extends IGamePluginService> getPluginServices() {

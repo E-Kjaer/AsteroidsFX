@@ -4,6 +4,7 @@ import dk.sdu.mmmi.cbse.common.services.IEntityProcessingService;
 import dk.sdu.mmmi.cbse.commonCollision.ICollisionHandler;
 
 module Collision {
+    uses dk.sdu.mmmi.cbse.commonAsteroid.IAsteroidSplitter;
     requires Common;
     requires CommonBullet;
     requires CommonEnemy;
