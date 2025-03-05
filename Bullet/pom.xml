@@ -7,7 +7,7 @@
         <version>1.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>Bullet</artifactId>
-    <name>Archetype - Bullet</name>
+    <name>Bullet</name>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>

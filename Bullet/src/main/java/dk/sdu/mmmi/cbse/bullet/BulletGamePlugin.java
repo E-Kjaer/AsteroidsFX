@@ -7,8 +7,6 @@ import dk.sdu.mmmi.cbse.common.services.IGamePluginService;
 import dk.sdu.mmmi.cbse.commonBullet.Bullet;
 import dk.sdu.mmmi.cbse.commonBullet.BulletSPI;
 
-import java.util.Random;
-
 public class BulletGamePlugin implements IGamePluginService, BulletSPI {
     @Override
     public void start(GameData gameData, World world) {
@@ -28,6 +26,7 @@ public class BulletGamePlugin implements IGamePluginService, BulletSPI {
         bullet.setRotation(e.getRotation());
         bullet.setPolygonCoordinates(1, 1, -3, 1, -3, -1, 1, -1);
         bullet.setColor(new int[]{255, 255, 255});
+        bullet.setRadius(1);
         return bullet;
     }
 }
